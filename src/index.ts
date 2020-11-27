@@ -113,8 +113,9 @@ function onexecute_SpreadsheetReader_Read(properties: SingleRecord, configuratio
       if (xhr.status !== 201) throw new Error("Failed with status " + JSON.stringify(xhr.response));
       postResult(xhr.response);
   };
-  xhr.setRequestHeader("Content-Type", "multipart/form-data");
   let webAPIUrl:string = configuration["Web API URL"].toString();
   xhr.open("POST", webAPIUrl, true);
+  xhr.setRequestHeader("Content-Type", "multipart/form-data");
+  
   xhr.send(form);
 }
