@@ -97,19 +97,19 @@ function onexecute_SpreadsheetReader_Read(properties: SingleRecord, configuratio
   var form = new FormData();
   console.log(properties[SpreadsheetReaderObjectFileProperty].filename);
   console.log(properties[SpreadsheetReaderObjectFileProperty].content);
-  // form.append('attributes', JSON.stringify({
-  //     "name": properties[SpreadsheetReaderObjectFileProperty].filename,
-  //     "parent": {
-  //         "id": "0"
-  //     }
-  // })); //IMPORTANT
-  form.append('Attachment', properties[SpreadsheetReaderObjectFileProperty]);
-  let columnsCSV: string = <string> configuration["Columns To Read"];
-  let columns: string[] = columnsCSV.split(",");
-  for (let column of columns) {
-    console.log("appending " + column);
-    form.append('ColumnsToRead', column);
-  }
+  form.append('attributes', JSON.stringify({
+      "name": properties[SpreadsheetReaderObjectFileProperty].filename,
+      "parent": {
+          "id": "0"
+      }
+  })); //IMPORTANT
+  form.append('Attachment', properties[SpreadsheetReaderObjectFileProperty].content);
+  // let columnsCSV: string = <string> configuration["Columns To Read"];
+  // let columns: string[] = columnsCSV.split(",");
+  // for (let column of columns) {
+  //   console.log("appending " + column);
+  //   form.append('ColumnsToRead', column);
+  // }
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
       if (xhr.readyState !== 4) return;
@@ -118,8 +118,6 @@ function onexecute_SpreadsheetReader_Read(properties: SingleRecord, configuratio
   };
   let webAPIUrl:string = configuration["Web API URL"].toString();
   xhr.open("POST", webAPIUrl, true);
-  xhr.setRequestHeader("Content-Type", "multipart/form-data");
-
-  console.log(form);
+  // xhr.setRequestHeader("Content-Type", "multipart/form-data");
   xhr.send(form);
 }
