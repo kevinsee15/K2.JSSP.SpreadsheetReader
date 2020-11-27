@@ -50,13 +50,13 @@ ondescribe = async function ({ configuration }): Promise<void> {
   }
 
   for (let column of columns) {
-    schema.objects.ExcelCSVReader.properties[column] = {
+    schema.objects.SpreadsheetReader.properties[column] = {
       displayName: column,
       type: "string"
     };
   }
 
-  schema.objects.ExcelCSVReader.methods.Read.outputs = columns;
+  schema.objects.SpreadsheetReader.methods.Read.outputs = columns;
 
   postSchema(schema);
 };
@@ -101,7 +101,7 @@ function onexecute_SpreadsheetReader_Read(properties: SingleRecord, configuratio
             "id": "0"
         }
     })); //IMPORTANT
-    form.append('Attachment', properties["SpreadsheetReaderObjectFileProperty"].content);
+    form.append('Attachment', properties[SpreadsheetReaderObjectFileProperty].content);
     let columnsCSV: string = <string> configuration["Columns To Read"];
     let columns: string[] = columnsCSV.split(",");
     for (let column of columns) {
