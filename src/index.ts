@@ -7,7 +7,7 @@ const SpreadsheetReaderObjectReadMethod:string = "Read";
 metadata = {
   systemName: "k2.jssp.spreadsheetreader",
   displayName: "K2 JSSP Spreadsheet Reader",
-  description: "An example broker dynamically generates service objects.",
+  description: "A K2 JSSP based broker that can ingest Excel or CSV files and return as a list that can be displayed in K2 SmartForm list view.",
   configuration: {
     "Web API URL": {
      "displayName": "Web API URL",

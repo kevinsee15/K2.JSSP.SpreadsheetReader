@@ -1,17 +1,15 @@
-# K2 TypeScript Broker Template
+# K2 JSSP Spreadsheet Reader
 
-This is demonstrates best-practices for developing a K2 Broker using TypeScript.
+A K2 JSSP based broker that can ingest Excel or CSV files and return as a list that can be displayed in K2 SmartForm list view.
 
 # Features
 
-- Full object model intellisense for making development easier
-- Sample broker code that accesses jsonplaceholder.
-- Sample unit tests with mocks and code coverage.
-- RollupJS configuration for TypeScript.
+- Dynamically generated service objects based on Excel or CSV headers.
 
 ## Getting Started
 
-This template requires [Node.js](https://nodejs.org/) v12.14.1+ to run.
+This app requires [Node.js](https://nodejs.org/) v12.14.1+ to run.
+This app also requires an accompanying ASP .NET Core app to digest and process Excel or CSV files. Reach out to kevin.seechan@nintex.com to obtain the source code for this app.
 
 Install the dependencies and devDependencies:
 
