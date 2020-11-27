@@ -95,6 +95,7 @@ async function onexecute_SpreadsheetReader(
 
 function onexecute_SpreadsheetReader_Read(properties: SingleRecord, configuration: SingleRecord) {
   var form = new FormData();
+  console.log(properties);
   // form.append('attributes', JSON.stringify({
   //     "name": properties[SpreadsheetReaderObjectFileProperty].filename,
   //     "parent": {
@@ -105,6 +106,7 @@ function onexecute_SpreadsheetReader_Read(properties: SingleRecord, configuratio
   let columnsCSV: string = <string> configuration["Columns To Read"];
   let columns: string[] = columnsCSV.split(",");
   for (let column of columns) {
+    console.log("appending " + column);
     form.append('ColumnsToRead', column);
   }
   var xhr = new XMLHttpRequest();
@@ -117,5 +119,6 @@ function onexecute_SpreadsheetReader_Read(properties: SingleRecord, configuratio
   xhr.open("POST", webAPIUrl, true);
   xhr.setRequestHeader("Content-Type", "multipart/form-data");
 
+  console.log(form);
   xhr.send(form);
 }
