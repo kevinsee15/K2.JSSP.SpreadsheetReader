@@ -95,7 +95,8 @@ async function onexecute_SpreadsheetReader(
 
 function onexecute_SpreadsheetReader_Read(properties: SingleRecord, configuration: SingleRecord) {
   var form = new FormData();
-  console.log(properties);
+  console.log(properties[SpreadsheetReaderObjectFileProperty].filename);
+  console.log(properties[SpreadsheetReaderObjectFileProperty].content);
   // form.append('attributes', JSON.stringify({
   //     "name": properties[SpreadsheetReaderObjectFileProperty].filename,
   //     "parent": {
