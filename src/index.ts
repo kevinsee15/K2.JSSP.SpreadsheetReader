@@ -112,7 +112,7 @@ function onexecute_SpreadsheetReader_Read(properties: SingleRecord, configuratio
   // // }
   // var xhr = new XMLHttpRequest();
   var data = new FormData();
-  data.append('file', properties[SpreadsheetReaderObjectFileProperty].content);
+  data.append('file', properties[SpreadsheetReaderObjectFileProperty]);
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
       if (xhr.readyState !== 4) return;
