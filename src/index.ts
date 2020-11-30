@@ -103,7 +103,6 @@ function onexecute_SpreadsheetReader_Read(properties: SingleRecord, configuratio
   // }
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
-      if (xhr.readyState !== 4) return;
       if (xhr.status !== 200 && xhr.status !== 201) throw new Error("Failed with status " + JSON.stringify(xhr.response));
       postResult(xhr.response);
   };
