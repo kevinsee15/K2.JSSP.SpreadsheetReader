@@ -96,11 +96,11 @@ async function onexecute_SpreadsheetReader(
 function onexecute_SpreadsheetReader_Read(properties: SingleRecord, configuration: SingleRecord) {
   var data = new FormData();
   data.append('file', properties[SpreadsheetReaderObjectFileProperty]);
-  let columnsCSV: string = <string> configuration["Columns To Read"];
-  let columns: string[] = columnsCSV.split(",");
-  for (let column of columns) {
-    data.append('columnstoread', column);
-  }
+  // let columnsCSV: string = <string> configuration["Columns To Read"];
+  // let columns: string[] = columnsCSV.split(",");
+  // for (let column of columns) {
+  //   data.append('columnstoread', column);
+  // }
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
       if (xhr.readyState !== 4) return;
