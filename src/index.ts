@@ -96,20 +96,18 @@ async function onexecute_SpreadsheetReader(
 function onexecute_SpreadsheetReader_Read(properties: SingleRecord, configuration: SingleRecord) {
   var data = new FormData();
   data.append('file', properties[SpreadsheetReaderObjectFileProperty]);
+  // let columnsCSV: string = <string> configuration["Columns To Read"];
+  // let columns: string[] = columnsCSV.split(",");
+  // for (let column of columns) {
+  //   data.append('columnstoread', column);
+  // }
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
-    console.log("Response received");
-    if(xhr.status == 200 || xhr.status == 201) {
-      console.log("Posting result....");
+      if (xhr.readyState !== 4) return;
+      if (xhr.status !== 200 && xhr.status !== 201) throw new Error("Failed with status " + JSON.stringify(xhr.response));
       postResult(xhr.response);
-    } else {
-      throw new Error("Failed with status " + JSON.stringify(xhr.response));
-    }
   };
-  let webAPIUrl:string = configuration["Web API URL"].toString() + "?columnstoread=" + encodeURIComponent(configuration["Columns To Read"].toString());
-  console.log(webAPIUrl);
+  let webAPIUrl:string = configuration["Web API URL"].toString();
   xhr.open("POST", webAPIUrl);
-  console.log("Sending data...");
   xhr.send(data);
-  console.log("Sent.");
 }
