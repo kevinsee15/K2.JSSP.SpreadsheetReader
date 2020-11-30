@@ -103,7 +103,7 @@ function onexecute_SpreadsheetReader_Read(properties: SingleRecord, configuratio
   // }
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
-      if (xhr.status !== 200 && xhr.status !== 201) throw new Error("Failed with status " + JSON.stringify(xhr.response));
+      if (xhr.status !== 200) throw new Error("Failed with status " + JSON.stringify(xhr.response));
       postResult(xhr.response);
   };
   let webAPIUrl:string = configuration["Web API URL"].toString() + "?columnstoread=" + encodeURIComponent(configuration["Columns To Read"].toString());
