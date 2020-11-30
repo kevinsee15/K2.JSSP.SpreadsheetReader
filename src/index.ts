@@ -107,6 +107,7 @@ function onexecute_SpreadsheetReader_Read(properties: SingleRecord, configuratio
     }
   };
   let webAPIUrl:string = configuration["Web API URL"].toString() + "?columnstoread=" + encodeURIComponent(configuration["Columns To Read"].toString());
+  console.log(webAPIUrl);
   xhr.open("POST", webAPIUrl);
   console.log("Sending data...");
   xhr.send(data);
