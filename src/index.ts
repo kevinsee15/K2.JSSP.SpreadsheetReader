@@ -103,7 +103,7 @@ function onexecute_SpreadsheetReader_Read(properties: SingleRecord, configuratio
   //         "id": "0"
   //     }
   // })); //IMPORTANT
-  data.append('attachment', properties[SpreadsheetReaderObjectFileProperty].content, properties[SpreadsheetReaderObjectFileProperty].filename);
+  data.append('attachment', properties[SpreadsheetReaderObjectFileProperty]);
   // let columnsCSV: string = <string> configuration["Columns To Read"];
   // let columns: string[] = columnsCSV.split(",");
   // for (let column of columns) {
@@ -119,6 +119,5 @@ function onexecute_SpreadsheetReader_Read(properties: SingleRecord, configuratio
   let webAPIUrl:string = configuration["Web API URL"].toString();
   console.log("Sending request...");
   xhr.open("POST", webAPIUrl);
-  // xhr.setRequestHeader("Content-Type", "multipart/form-data");
   xhr.send(data);
 }
