@@ -94,16 +94,16 @@ async function onexecute_SpreadsheetReader(
 }
 
 function onexecute_SpreadsheetReader_Read(properties: SingleRecord, configuration: SingleRecord) {
-  var form = new FormData();
-  console.log(properties[SpreadsheetReaderObjectFileProperty].filename);
-  console.log(properties[SpreadsheetReaderObjectFileProperty].content);
-  form.append('attributes', JSON.stringify({
-      "name": properties[SpreadsheetReaderObjectFileProperty].filename,
-      "parent": {
-          "id": "0"
-      }
-  })); //IMPORTANT
-  form.append('Attachment', properties[SpreadsheetReaderObjectFileProperty].content);
+  var data = new FormData();
+  // console.log(properties[SpreadsheetReaderObjectFileProperty].filename);
+  // console.log(properties[SpreadsheetReaderObjectFileProperty].content);
+  // data.append('attributes', JSON.stringify({
+  //     "name": properties[SpreadsheetReaderObjectFileProperty].filename,
+  //     "parent": {
+  //         "id": "0"
+  //     }
+  // })); //IMPORTANT
+  data.append('attachment', properties[SpreadsheetReaderObjectFileProperty].content, properties[SpreadsheetReaderObjectFileProperty].filename);
   // let columnsCSV: string = <string> configuration["Columns To Read"];
   // let columns: string[] = columnsCSV.split(",");
   // for (let column of columns) {
@@ -117,7 +117,8 @@ function onexecute_SpreadsheetReader_Read(properties: SingleRecord, configuratio
       postResult(xhr.response);
   };
   let webAPIUrl:string = configuration["Web API URL"].toString();
-  xhr.open("POST", webAPIUrl, true);
+  console.log("Sending request...");
+  xhr.open("POST", webAPIUrl);
   // xhr.setRequestHeader("Content-Type", "multipart/form-data");
-  xhr.send(form);
+  xhr.send(data);
 }
