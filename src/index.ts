@@ -98,14 +98,13 @@ function onexecute_SpreadsheetReader_Read(properties: SingleRecord, configuratio
   data.append('file', properties[SpreadsheetReaderObjectFileProperty]);
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
-      if (xhr.readyState !== 4) return;
-      if (xhr.status !== 200 && xhr.status !== 201) throw new Error("Failed with status " + JSON.stringify(xhr.response));
+    if(xhr.status == 200 || xhr.status == 201) {
       postResult(xhr.response);
+    } else {
+      throw new Error("Failed with status " + JSON.stringify(xhr.response));
+    }
   };
-  console.log("Forming URL...");
   let webAPIUrl:string = configuration["Web API URL"].toString() + "?columnstoread=" + encodeURIComponent(configuration["Columns To Read"].toString());
-  console.log("Opening request...");
   xhr.open("POST", webAPIUrl);
-  console.log("Sending request...");
   xhr.send(data);
 }
