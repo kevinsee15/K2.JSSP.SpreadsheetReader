@@ -4,12 +4,19 @@ A K2 JSSP based broker that can ingest Excel or CSV files and return as a list t
 
 # Features
 
-- Dynamically generated service objects based on Excel or CSV headers.
+- Accepts an Excel or CSV file and returns the contents that can be displayed in a list view.
+- Dynamically generates service object properties based on Excel or CSV column headers.
+
+## Assumptions
+
+- Excel files with macro features enabled are not supported.
+- Only the first sheet will be read.
+- Maximum allowed file size is 16 MB (K2 SmartForm limitation).
 
 ## Getting Started
 
 This app requires [Node.js](https://nodejs.org/) v12.14.1+ to run.
-This app also requires an accompanying ASP .NET Core app to digest and process Excel or CSV files. Reach out to kevin.seechan@nintex.com to obtain the source code for this app.
+This app also requires an accompanying ASP.NET Core app to digest and process Excel or CSV files. It is up to you to host this app somewhere. Ensure that K2 Cloud can reach the service endpoint. Reach out to kevin.seechan@nintex.com to obtain the source code for this app.
 
 Install the dependencies and devDependencies:
 
