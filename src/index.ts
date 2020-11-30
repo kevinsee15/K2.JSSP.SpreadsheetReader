@@ -94,35 +94,20 @@ async function onexecute_SpreadsheetReader(
 }
 
 function onexecute_SpreadsheetReader_Read(properties: SingleRecord, configuration: SingleRecord) {
-  // var data = new FormData();
-  // // console.log(properties[SpreadsheetReaderObjectFileProperty].filename);
-  // // console.log(properties[SpreadsheetReaderObjectFileProperty].content);
-  // // data.append('attributes', JSON.stringify({
-  // //     "name": properties[SpreadsheetReaderObjectFileProperty].filename,
-  // //     "parent": {
-  // //         "id": "0"
-  // //     }
-  // // })); //IMPORTANT
-  // data.append('attachment', properties[SpreadsheetReaderObjectFileProperty]);
-  // // let columnsCSV: string = <string> configuration["Columns To Read"];
-  // // let columns: string[] = columnsCSV.split(",");
-  // // for (let column of columns) {
-  // //   console.log("appending " + column);
-  // //   form.append('ColumnsToRead', column);
-  // // }
-  // var xhr = new XMLHttpRequest();
   var data = new FormData();
   data.append('file', properties[SpreadsheetReaderObjectFileProperty]);
+  let columnsCSV: string = <string> configuration["Columns To Read"];
+  let columns: string[] = columnsCSV.split(",");
+  for (let column of columns) {
+    data.append('columnstoread', column);
+  }
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
       if (xhr.readyState !== 4) return;
       if (xhr.status !== 201) throw new Error("Failed with status " + JSON.stringify(xhr.response));
-      console.log(xhr.response);
       postResult(xhr.response);
   };
-  // let webAPIUrl:string = configuration["Web API URL"].toString();
-  let webAPIUrl:string = "https://k2utilitiesexceltools.azurewebsites.net/api/Excel/upload"
-  console.log("Sending request...");
+  let webAPIUrl:string = configuration["Web API URL"].toString();
   xhr.open("POST", webAPIUrl);
   xhr.send(data);
 }
