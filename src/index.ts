@@ -98,7 +98,9 @@ function onexecute_SpreadsheetReader_Read(properties: SingleRecord, configuratio
   data.append('file', properties[SpreadsheetReaderObjectFileProperty]);
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
+    console.log("Response received");
     if(xhr.status == 200 || xhr.status == 201) {
+      console.log("Posting result....");
       postResult(xhr.response);
     } else {
       throw new Error("Failed with status " + JSON.stringify(xhr.response));
@@ -106,5 +108,7 @@ function onexecute_SpreadsheetReader_Read(properties: SingleRecord, configuratio
   };
   let webAPIUrl:string = configuration["Web API URL"].toString() + "?columnstoread=" + encodeURIComponent(configuration["Columns To Read"].toString());
   xhr.open("POST", webAPIUrl);
+  console.log("Sending data...");
   xhr.send(data);
+  console.log("Sent.");
 }
